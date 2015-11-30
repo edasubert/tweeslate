@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "43348aa5a2e1bd0c8c2e10ea4a095ae0",
-    "content-hash": "03e34d2bc094b00dd281c455e1c4f26d",
+    "hash": "6a4870239c14a821357427d3a6269b12",
+    "content-hash": "11e91f8526871cee3f0ed9618f92d10a",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -128,16 +128,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.1.4",
+            "version": "3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "46abd7761c0528ad6eee5da6dde292abbeade851"
+                "reference": "bfc9cfbb8508e1014e183f35aff082fd584c00d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/46abd7761c0528ad6eee5da6dde292abbeade851",
-                "reference": "46abd7761c0528ad6eee5da6dde292abbeade851",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/bfc9cfbb8508e1014e183f35aff082fd584c00d7",
+                "reference": "bfc9cfbb8508e1014e183f35aff082fd584c00d7",
                 "shasum": ""
             },
             "require": {
@@ -194,7 +194,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-11-06 03:48:56"
+            "time": "2015-11-30 03:10:23"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -779,16 +779,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.18",
+            "version": "4.8.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "fa33d4ad96481b91df343d83e8c8aabed6b1dfd3"
+                "reference": "b2caaf8947aba5e002d42126723e9d69795f32b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fa33d4ad96481b91df343d83e8c8aabed6b1dfd3",
-                "reference": "fa33d4ad96481b91df343d83e8c8aabed6b1dfd3",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b2caaf8947aba5e002d42126723e9d69795f32b4",
+                "reference": "b2caaf8947aba5e002d42126723e9d69795f32b4",
                 "shasum": ""
             },
             "require": {
@@ -847,7 +847,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-11-11 11:32:49"
+            "time": "2015-11-30 08:18:59"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
