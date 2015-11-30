@@ -23,7 +23,7 @@ class TwitterController extends AppController
      * search twitter for tweets and save to database
      * @event Plugin.SourcePush When new sources saved
      */
-    public function addTweet()
+    public function pullSaveTweets()
     {
         // retreive tweets
         $twitter = new \TwitterAPIExchange(Configure::read('Twitter'));
@@ -31,6 +31,7 @@ class TwitterController extends AppController
         $newSources = array();
         
         $queries = TableRegistry::get('TwitterQueries')->find('all')->where(['active' => 1]); // get active queries
+        
         foreach ($queries as $query)
         {
             $url = $query->url;
@@ -43,15 +44,11 @@ class TwitterController extends AppController
             
             if (!$result)
             {
+                Log::write('sourcePlugin', 'Twitter Query Fail: id = '.$query->id.'\t'.$query->url.'/'.$query->getfield );
                 continue;
             }
             
-            $result = json_decode($result, true);
-            
-            if ( !(strpos($query->url, 'search') === false)) // search has different format
-            {
-                $result = $result['statuses'];
-            }
+            $result = $this->resultDecode( $result, $query );
             
             $sources = new SourcesController();
             
@@ -70,6 +67,27 @@ class TwitterController extends AppController
         $this->eventManager()->dispatch($event);
         
         $this->set('newSources', $newSources);
+    }
+    
+    /*
+     * resultDecode method
+     * 
+     * @param json $result result of Twitter API
+     * @param object $query TwitterQuery entity
+     * @return array $result decoded and unified to array of tweets
+     * 
+     */
+        
+    private function resultDecode( $result, $query )
+    {
+        $result = json_decode($result, true);
+        
+        if ( !(strpos($query->url, 'search') === false)) // search query has a different array format
+        {
+            $result = $result['statuses'];
+        }
+        
+        return $result;
     }
 }
 ?>

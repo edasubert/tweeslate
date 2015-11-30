@@ -2,7 +2,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Twitter Query'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Add Tweet'), ['controller' => 'Twitter', 'action' => 'addTweet']) ?></li>
+        <li><?= $this->Html->link(__('Pull Push Tweets'), ['controller' => 'Twitter', 'action' => 'pullSaveTweets']) ?></li>
     </ul>
 </nav>
 <div class="twitterQueries index large-9 medium-8 columns content">
