@@ -1,4 +1,5 @@
 /vendor/*
+/plugins/TctTwitterSource/vendor/*
 /config/app.php
 /tmp/*
 /logs/*
