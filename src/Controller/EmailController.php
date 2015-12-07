@@ -7,8 +7,9 @@ use App\Controller\AppController;
  * Email Controller
  *
  */
-class EmailController extends AppController implements EventListenerInterface
+class EmailController extends AppController
 {
+    
     
     
 }

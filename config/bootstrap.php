@@ -208,7 +208,7 @@ Plugin::load('TctTwitterSource', ['bootstrap' => true, 'routes' => true, 'autolo
 /**
  * Global events
  */
-use App\Controller\UsersController;
+use App\Controller\NewSourcesController;
 use Cake\Event\EventManager;
-$users = new UsersController();
-EventManager::instance()->attach($users);
+$newSources = new NewSourcesController();
+EventManager::instance()->attach($newSources);

@@ -5,6 +5,7 @@
         <li><?= $this->Form->postLink(__('Delete Twitter Query'), ['action' => 'delete', $twitterQuery->id], ['confirm' => __('Are you sure you want to delete # {0}?', $twitterQuery->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Twitter Queries'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Twitter Query'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Pull Save Tweets'), ['controller' => 'Twitter', 'action' => 'pullSaveTweets']) ?> </li>
     </ul>
 </nav>
 <div class="twitterQueries view large-9 medium-8 columns content">
@@ -25,6 +26,10 @@
         <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($twitterQuery->id) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Language Target') ?></th>
+            <td><?= $this->Number->format($twitterQuery->language_target) ?></td>
         </tr>
         <tr>
             <th><?= __('Created') ?></th>

@@ -2,7 +2,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Twitter Query'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Pull Push Tweets'), ['controller' => 'Twitter', 'action' => 'pullSaveTweets']) ?></li>
+        <li><?= $this->Html->link(__('Pull Save Tweets'), ['controller' => 'Twitter', 'action' => 'pullSaveTweets']) ?> </li>
     </ul>
 </nav>
 <div class="twitterQueries index large-9 medium-8 columns content">
@@ -15,6 +15,7 @@
                 <th><?= $this->Paginator->sort('url') ?></th>
                 <th><?= $this->Paginator->sort('getfield') ?></th>
                 <th><?= $this->Paginator->sort('active') ?></th>
+                <th><?= $this->Paginator->sort('language_target') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -27,6 +28,7 @@
                 <td><?= h($twitterQuery->url) ?></td>
                 <td><?= h($twitterQuery->getfield) ?></td>
                 <td><?= h($twitterQuery->active) ?></td>
+                <td><?= $this->Number->format($twitterQuery->language_target) ?></td>
                 <td><?= h($twitterQuery->created) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $twitterQuery->id]) ?>

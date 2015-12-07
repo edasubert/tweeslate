@@ -7,5 +7,11 @@
 <div class="twitterQueries view large-9 medium-8 columns content">
     <h3>Add Tweet</h3>
     <p>Added tweets: <?= count($newSources) ?></p>
-    <p>ids: [<?= implode($newSources,', ') ?>]</p>
+    <p>
+      <ul>
+        <?php foreach( $newSources as $source ): ?>
+          <li>translate (<?= $source[0] ?>) to language (<?= $source[1] ?>)</li>
+        <?php endforeach; ?>
+      </ul>
+    </p>
 </div>

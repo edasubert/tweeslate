@@ -10,7 +10,7 @@ use App\Controller\AppController;
  */
 class TranslationRequestsController extends AppController
 {
-
+    
     /**
      * Index method
      *

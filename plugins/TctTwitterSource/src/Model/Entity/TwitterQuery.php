@@ -12,6 +12,7 @@ use Cake\ORM\Entity;
  * @property string $url
  * @property string $getfield
  * @property bool $active
+ * @property int $language_target
  * @property string $description
  * @property \Cake\I18n\Time $created
  */

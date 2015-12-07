@@ -57,14 +57,17 @@ class TwitterController extends AppController
             {
                 if ($source = $sources->add($tweet['id_str'], $tweet['lang'], $tweet['text'], json_encode( $tweet ), $query->user_id))
                 {
-                    array_push($newSources, $source->id);
+                    array_push($newSources, [$source->id, $query->language_target]);
                 }
             }
         }
         
-        // dispatch event
-        $event = new Event('Plugin.SourcePush', $this, ['newSources' => $newSources]);
-        $this->eventManager()->dispatch($event);
+        // dispatch event only if some tweets added
+        if ( ! empty( $newSources ) )
+        {
+          $event = new Event('Plugin.SourcePush', $this, ['newSources' => $newSources]);
+          $this->eventManager()->dispatch($event);
+        }
         
         $this->set('newSources', $newSources);
     }

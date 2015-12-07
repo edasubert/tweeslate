@@ -8,8 +8,7 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Twitter Queries'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Pull Save Tweets'), ['controller' => 'Twitter', 'action' => 'pullSaveTweets']) ?> </li>
     </ul>
 </nav>
 <div class="twitterQueries form large-9 medium-8 columns content">
@@ -21,6 +20,7 @@
             echo $this->Form->input('url');
             echo $this->Form->input('getfield');
             echo $this->Form->input('active');
+            echo $this->Form->input('language_target');
             echo $this->Form->input('description');
         ?>
     </fieldset>

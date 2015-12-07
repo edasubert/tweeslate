@@ -64,6 +64,11 @@ class TwitterQueriesTable extends Table
             ->notEmpty('active');
 
         $validator
+            ->add('language_target', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('language_target', 'create')
+            ->notEmpty('language_target');
+
+        $validator
             ->allowEmpty('description');
 
         return $validator;

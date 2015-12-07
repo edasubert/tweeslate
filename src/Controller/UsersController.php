@@ -140,19 +140,4 @@ class UsersController extends AppController implements EventListenerInterface
         $this->Flash->success('You are now logged out.');
         return $this->redirect($this->Auth->logout());
     }
-    
-    
-    /* Events */
-    
-    public function testing($event)
-    {
-        $this->Flash->success(implode($event->data['newSources'],', ').' Event test successful');
-    }
-    
-    public function implementedEvents()
-    {
-        return [
-            'Plugin.SourcePush' => 'testing',
-        ];
-    }
 }
