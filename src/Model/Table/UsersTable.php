@@ -56,7 +56,11 @@ class UsersTable extends Table
         $this->belongsToMany('UserAttributes', [
             'foreignKey' => 'user_id',
             'targetForeignKey' => 'user_attribute_id',
-            'joinTable' => 'users_user_attributes'
+            'joinTable' => 'languages_users',
+            'through' => 'LanguagesDirection'
+        ]);
+        $this->hasMany('LanguagesDirection', [
+            'foreignKey' => 'user_id'
         ]);
     }
 
@@ -111,5 +115,58 @@ class UsersTable extends Table
     {
         $rules->add($rules->isUnique(['email']));
         return $rules;
+    }
+
+
+    /**
+     * Custom finder method
+     * users with vacation in the past
+     *
+     * @param Query $query
+     * @param array $options
+     * @return Query
+     */
+    public function findAvailable(Query $query, array $options)
+    {
+        $query->where(function ($exp, $q) {
+                return $exp->lt('vacation', $q->func()->now());
+            });
+        return $query;
+    }
+
+    /**
+     * Custom finder method
+     * active users
+     *
+     * @param Query $query
+     * @param array $options
+     * @return Query
+     */
+    public function findActive(Query $query, array $options)
+    {
+        $query->where(function ($exp, $q) {
+            return $exp->isNotNull('active');
+        });
+        return $query;
+    }
+
+    /**
+     * Custom finder method
+     * users translating to/from given language
+     *
+     * @param Query $query
+     * @param array $options ['language_id'] == language_id, ['target'] == true (target language) false (source language)
+     * @return Query
+     */
+    public function findLanguage(Query $query, array $options)
+    {
+        $query->contain(['LanguagesDirection'])
+              ->matching('LanguagesDirection', function(\Cake\ORM\Query $query) use ($options) {
+                    return $query->where([
+                        'LanguagesDirection.language_id' => $options['language_id'],
+                        'LanguagesDirection.target' => $options['target']
+                    ]);
+              });
+        return $query;
     }
 }
