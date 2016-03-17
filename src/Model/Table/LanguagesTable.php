@@ -45,7 +45,6 @@ class LanguagesTable extends Table
         ]);
         $this->belongsToMany('Users', [
             'foreignKey' => 'language_id',
-            'targetForeignKey' => 'user_id',
             'through' => 'LanguagesDirection'
         ]);
     }

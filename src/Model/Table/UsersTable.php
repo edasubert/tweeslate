@@ -50,17 +50,11 @@ class UsersTable extends Table
         ]);
         $this->belongsToMany('Languages', [
             'foreignKey' => 'user_id',
-            'targetForeignKey' => 'language_id',
-            'joinTable' => 'languages_users'
+            'through' => 'LanguagesDirection'
         ]);
         $this->belongsToMany('UserAttributes', [
             'foreignKey' => 'user_id',
-            'targetForeignKey' => 'user_attribute_id',
-            'joinTable' => 'languages_users',
-            'through' => 'LanguagesDirection'
-        ]);
-        $this->hasMany('LanguagesDirection', [
-            'foreignKey' => 'user_id'
+            'joinTable' => 'users_user_attributes'
         ]);
     }
 

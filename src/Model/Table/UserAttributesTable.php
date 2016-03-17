@@ -33,7 +33,6 @@ class UserAttributesTable extends Table
 
         $this->belongsToMany('Users', [
             'foreignKey' => 'user_attribute_id',
-            'targetForeignKey' => 'user_id',
             'joinTable' => 'users_user_attributes'
         ]);
     }
