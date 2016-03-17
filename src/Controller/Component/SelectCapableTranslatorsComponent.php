@@ -1,10 +1,10 @@
 <?php
 namespace App\Controller\Component;
 
+use App\Controller\Component\Iface\SelectTranslatorInterface;
 use Cake\Controller\Component;
 use Cake\ORM\TableRegistry;
 
-require_once 'Interface/SelectTranslatorInterface.php';
 
 class SelectCapableTranslatorsComponent extends Component implements SelectTranslatorInterface
 {

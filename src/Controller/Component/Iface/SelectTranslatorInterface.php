@@ -1,5 +1,5 @@
 <?php
-namespace Controller\Component;
+namespace App\Controller\Component\Iface;
 
 interface SelectTranslatorInterface
 {

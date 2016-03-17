@@ -19,8 +19,8 @@ class NewSourcesController extends AppController implements EventListenerInterfa
     {
         parent::initialize();
         $this->loadComponent('SelectTranslator', [
-                'className' => Configure::read('Component')['SelectTranslator']
-            ]);
+            'className' => Configure::read('Component')['SelectTranslator']
+        ]);
     }
 
     public function implementedEvents()
@@ -29,18 +29,17 @@ class NewSourcesController extends AppController implements EventListenerInterfa
             'Plugin.SourcePush' => 'requestForTranslation',
         ];
     }
-    
+
     /**
      * requestForTranslation method
      * called after Plugin.SourcePush event is dispatched
-     * 
+     *
      * @param array int id of new sources, target languages
      * @return void
      */
     public function requestForTranslation($event)
     {
-        foreach( $event->data['newSources'] as $eventData )
-        {
+        foreach ($event->data['newSources'] as $eventData) {
             $sourceId = $eventData[0];
             $targetLanguageId = $eventData[1];
 
@@ -52,19 +51,19 @@ class NewSourcesController extends AppController implements EventListenerInterfa
 
             // select suitable translators
             $translators = $this->SelectTranslator->selectTranslators($source->id, $targetLanguage->id);
-            if (empty($translators)){
+            if (empty($translators)) {
                 continue;
             }
 
-            foreach( $translators as $translator) {
-            // file in translation requests
+            foreach ($translators as $translator) {
+                // file in translation requests
                 $translationRequest = $this->createTranslationRequest($translator, $source, $targetLanguage);
 
                 if ($translationRequest === false) {
-                    Log::write('newSource', 'createTranslationRequest fail: source:id = '.$source->id.'; user_id = '.$translator['id'].'; targetLanguage_id = '.$targetLanguage->id);
+                    Log::write('newSource', 'createTranslationRequest fail: source:id = ' . $source->id . '; user_id = ' . $translator['id'] . '; targetLanguage_id = ' . $targetLanguage->id);
                     continue;
                 }
-            // notify translators about the requests
+                // notify translators about the requests
                 $this->getMailer('translation')->send('translationRequest', [$source, $translator, $translationRequest['hash'], $sourceLanguage, $targetLanguage]);
             }
             // do machine translation
@@ -78,10 +77,12 @@ class NewSourcesController extends AppController implements EventListenerInterfa
      * @param $translator
      * @param $source
      * @param $targetLanguage
+     *
+     * @return bool/array translation requests and hashes
      */
     private function createTranslationRequest($translator, $source, $targetLanguage)
     {
-        $hash = md5($source->id.$translator['email'].$targetLanguage->name);
+        $hash = md5($source->id . $translator['email'] . $targetLanguage->name);
 
         $translationRequestTable = TableRegistry::get('TranslationRequests');
         $translationRequest = $translationRequestTable->newEntity();
@@ -92,7 +93,7 @@ class NewSourcesController extends AppController implements EventListenerInterfa
         $translationRequest->hash = $hash;
 
         if ($translationRequestTable->save($translationRequest)) {
-            return ['id' =>$translationRequest->id, 'hash' => $hash];
+            return ['id' => $translationRequest->id, 'hash' => $hash];
         }
         return false;
     }

@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
 use Cake\Event\EventListenerInterface;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
@@ -31,12 +30,17 @@ class NewTranslationsController extends AppController implements EventListenerIn
             $imap['password']
         );
 
+        //var_dump($mailbox->createMailbox());
+        var_dump($mailbox->getMailboxInfo());
+        var_dump($mailbox->getListingFolders());
+
         $mailsIds = $mailbox->searchMailBox('ALL');
+        var_dump($mailsIds);
 
         // if there are new emails dispatch event
         if($mailsIds) {
             $event = new Event('TranslationPush', $this, []);
-            $this->eventManager()->dispatch($event);
+            //$this->eventManager()->dispatch($event);
         }
     }
 
